@@ -471,7 +471,7 @@ restart proc
     add si,2
     loop delt
        
-    mov fin,3
+    mov fin,4
 
 
     mov sadd,07D2h
@@ -497,7 +497,9 @@ restart proc
     mov letadd[si],bx
     add si,2
     add bx,2
-    loop reslet
+    loop reslet      
+    xor si,si
+    mov snake[si],'D'
 
     jmp startag
 
