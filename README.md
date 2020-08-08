@@ -1,2 +1,2 @@
 # Snake-game-8086
-This snake game is made using Emu8086
+A simple assembly snake game made with Emu8086
