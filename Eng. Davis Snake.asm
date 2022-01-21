@@ -1,7 +1,7 @@
 ;Eng. Davis
 ;Snake Project
 ;University Microproccessor course
-;version 1.0
+;version 1.1
 
 data segment
     ;mainmenu
@@ -63,7 +63,9 @@ start:
     startag:
     
     call bild ;put letters and draw borders
-    xor cl,cl
+    
+    xor cl,cl 
+    xor dl,dl ;clear old values to not get input automatically or you can use it as the initial direction like " mov dl,'A' "
     read:
     mov ah,1
     int 16H
@@ -78,16 +80,17 @@ start:
     cmp dl,1bh
     je ext
     
-    cmp dl,'D'
-    jne left
-    call mr
+    left:
+    cmp dl,'A'
+    jne right
+    call ml
     mov cl,dl
     jmp read
     
-    left:
-    cmp dl,'A'
+    right:
+    cmp dl,'D'
     jne up
-    call ml
+    call mr
     mov cl,dl
     jmp read
     
