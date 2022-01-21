@@ -20,15 +20,15 @@ data segment
     ;bild
     hlths db "Lives:",3,3,3
     ;ingame
-    letadd dw 09b4h,0848h,06b0h,01E8h,4 Dup(0)
-    dletadd dw 09b4h,0848h,06b0h,01E8h,4 Dup(0) 
-    letnum db 4
-    fin db 4 
-    hlth db 6 ;/2
+    letadd dw 09b4h,0848h,06b0h,01E8h,4 Dup(0) ;display addresses of collectable letters, this is being displayed and updated during the game play
+    dletadd dw 09b4h,0848h,06b0h,01E8h,4 Dup(0) ;default values for collectable letters addresses on display to return them back after reset the game
+    letnum db 4 ;number of collectable letters
+    fin db 4 ;to track the number of collectable letters
+    hlth db 6 ;/2 ;health count which is 3 in this case
     ;Snake Info            
-    sadd dw 07D2h,5 Dup(0)
-    snake db 'D',5 Dup(0)
-    snakel db 1 
+    sadd dw 07D2h,5 Dup(0) ;address of the first letter on the display and this will be updated during game play and will add each letter address after collecting
+    snake db 'D',5 Dup(0) ;Collected letters array
+    snakel db 1 ;collected letters count
     ;end 
     gmwin db "You Win"
     gmov db "Game Over"
