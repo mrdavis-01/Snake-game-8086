@@ -50,7 +50,7 @@ start:
     mov ax,0b800h
     mov es, ax 
     
-    cld
+    cld ;clear Direction Flag
     
     ;hide text cursor
     mov ah,1
@@ -66,7 +66,7 @@ start:
     
     xor cl,cl 
     xor dl,dl ;clear old values to not get input automatically or you can use it as the initial direction like " mov dl,'A' "
-    read:
+    read: ;check for keyboard inputs
     mov ah,1
     int 16H
     jz s1
@@ -76,7 +76,7 @@ start:
     mov dl,al
     jmp s1
     
-    s1:
+    s1: ;check if esc button is pressed
     cmp dl,1bh
     je ext
     
@@ -235,7 +235,7 @@ main_menu proc
 ret
 endp    
 ;Game screen 
-bild proc
+bild proc ;is for placing borders and set chracters on the screen
     ;start point
     call border 
     
@@ -269,7 +269,7 @@ endp
 
 ;snake move:
 ;left:
-ml proc
+ml proc ;snake move left function
     push dx 
     call shift_addrs
     sub sadd,2
@@ -281,7 +281,7 @@ ml proc
 ret    
 endp
 ;right:
-mr proc
+mr proc ;snake move right function
     push dx 
     call shift_addrs
     add sadd,2
@@ -295,7 +295,7 @@ mr proc
 ret    
 endp
 ;up:
-mu proc
+mu proc ;snake move up function
     push dx 
     call shift_addrs
     sub sadd,160
@@ -307,7 +307,7 @@ mu proc
 ret    
 endp
 ;down:
-md proc
+md proc ;snake move down function
     push dx 
     call shift_addrs
     add sadd,160
@@ -340,7 +340,7 @@ pop ax
 ret
 endp
 
-eat proc 
+eat proc ;to check if the snake hit a letter or not and add it to the snake
     push ax 
     push cx 
     
@@ -427,7 +427,7 @@ move_snake proc
 ret
 endp
 
-border proc
+border proc ;build borders function
     mov ah,0
     mov al,3
     int 10h
